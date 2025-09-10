@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowmart Fashion - Toko Baju Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background-color: #ff6b81;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffd6e7;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #fff;
+            color: #ff6b81;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff6b81;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #ff5168;
+            transform: translateY(-3px);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #ff6b81;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ff6b81;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            color: #ff6b81;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #ff5168;
+        }
+        
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-cart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #ff6b81;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .cart-item-quantity button {
+            background-color: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .cart-item-quantity span {
+            margin: 0 10px;
+        }
+        
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+        
+        .empty-cart i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            color: #ff6b81;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .about-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-card i {
+            font-size: 40px;
+            color: #ff6b81;
+            margin-bottom: 20px;
+        }
+        
+        .value-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            color: #666;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            color: #ff6b81;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item i {
+            font-size: 20px;
+            color: #ff6b81;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-item div {
+            flex: 1;
+        }
+        
+        .contact-item h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-item p {
+            color: #666;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .map-container {
+            margin-top: 50px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: #ff6b81;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6b81;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 300;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .about-content,
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                Glowmart Fashion
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                    <li>
+                        <div class="cart-icon" onclick="openCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Glowmart Fashion</h1>
+            <p>Temukan gaya terkini dengan koleksi fashion terbaik kami. Dari pakaian kasual hingga formal, semua ada di Glowmart Fashion!</p>
+            <a href="#products" class="btn">Belanja Sekarang</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="products">
+            <h2 class="section-title">Koleksi Terbaru</h2>
+            <div class="products" id="products-container">
+                <!-- Produk akan dimuat di sini oleh JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Tentang Glowmart Fashion</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Toko Glowmart Fashion">
+                </div>
+                <div class="about-text">
+                    <h3>Sejak 2015, Mempercantik Gaya Indonesia</h3>
+                    <p>Glowmart Fashion didirikan pada tahun 2015 dengan visi untuk menyediakan pakaian berkualitas tinggi dengan harga terjangkau bagi masyarakat Indonesia. Kami percaya bahwa setiap orang berhak tampil percaya diri dengan pakaian yang nyaman dan modis.</p>
+                    <p>Dengan pengalaman lebih dari 8 tahun di industri fashion, Glowmart Fashion telah menjadi salah satu toko online terpercaya yang menyediakan berbagai koleksi pakaian terkini untuk pria dan wanita.</p>
+                    <p>Kami selalu mengikuti tren fashion terbaru dan memastikan semua produk yang kami jual memiliki kualitas terbaik dengan bahan yang nyaman dan awet.</p>
+                </div>
+            </div>
+            
+            <div class="about-values">
+                <div class="value-card">
+                    <i class="fas fa-gem"></i>
+                    <h4>Kualitas Terbaik</h4>
+                    <p>Kami hanya menjual produk dengan kualitas terbaik dan bahan yang nyaman</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-tags"></i>
+                    <h4>Harga Terjangkau</h4>
+                    <p>Fashion berkualitas tidak harus mahal, kami berikan harga terbaik untuk Anda</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>Pengiriman Cepat</h4>
+                    <p>Kami mengirimkan pesanan Anda dengan cepat dan aman ke seluruh Indonesia</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-smile"></i>
+                    <h4>Kepuasan Pelanggan</h4>
+                    <p>Kepuasan Anda adalah prioritas utama kami, jaminan uang kembali jika tidak puas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. Fashion No. 123, Jakarta Selatan, DKI Jakarta 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>+62 21 1234 5678</p>
+                            <p>+62 812 3456 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@glowmartfashion.com</p>
+                            <p>support@glowmartfashion.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Jumat: 09.00 - 21.00 WIB</p>
+                            <p>Sabtu - Minggu: 10.00 - 20.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Kirim Pesan</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5212609220335!2d106.81603531476857!3d-6.194741995493374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e76dbb9f%3A0x5d9a5c0c3c9e8e0f!2sJakarta!5e0!3m2!1sen!2sid!4v1629786545678!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="closeCart()">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cart-items">
+                <!-- Item keranjang akan dimuat di sini -->
+            </div>
+            <div class="cart-total">
+                Total: Rp <span id="cart-total">0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang Glowmart</h3>
+                    <p>Glowmart Fashion adalah toko online terpercaya yang menyediakan koleksi fashion terkini dengan kualitas terbaik dan harga terjangkau.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Menu Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul>
+                        <li><a href="#">Atasan</a></li>
+                        <li><a href="#">Bawahan</a></li>
+                        <li><a href="#">Dress</a></li>
+                        <li><a href="#">Aksesoris</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                        <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@glowmartfashion.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Glowmart Fashion. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data produk
+        const products = [
+            {
+                id: 1,
+                name: "Blouse Batik Modern",
+                price: 150000,
+                description: "Blouse batik dengan desain modern yang cocok untuk acara formal dan kasual.",
+                image: "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                name: "Rok Span Panjang",
+                price: 120000,
+                description: "Rok span panjang yang nyaman dipakai dan cocok untuk aktivitas sehari-hari.",
+                image: "rok span.jpeg"
+            },
+            {
+                id: 3,
+                name: "Kemeja Flanel",
+                price: 180000,
+                description: "Kemeja flanel dengan bahan berkualitas tinggi, cocok untuk gaya casual.",
+                image: "kemeja flanel.jpeg"
+            },
+            {
+                id: 4,
+                name: "Dress Midi",
+                price: 220000,
+                description: "Dress midi dengan potongan yang elegan, cocok untuk acara formal.",
+                image: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: "Celana Jeans Skinny",
+                price: 200000,
+                description: "Celana jeans skinny yang pas di badan dan nyaman untuk aktifitas.",
+                image: "celana skinny jens.jpeg"
+            },
+            {
+                id: 6,
+                name: "Kaos Polos Premium",
+                price: 75000,
+                description: "Kaos polos dengan bahan katun premium yang nyaman dan awet.",
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // Keranjang belanja
+        let cart = [];
+
+        // Memuat produk
+        function loadProducts() {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <p class="product-description">${product.description}</p>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">Tambah ke Keranjang</button>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // Menambah produk ke keranjang
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            // Cek apakah produk sudah ada di keranjang
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showNotification(`${product.name} telah ditambahkan ke keranjang`);
+        }
+
+        // Memperbarui UI keranjang
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // Update jumlah item di keranjang
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update item di keranjang
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Keranjang belanja Anda kosong</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                            <div class="cart-item-quantity">
+                                <button onclick="decreaseQuantity(${item.id})">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="increaseQuantity(${item.id})">+</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+            }
+            
+            // Update total harga
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toLocaleString('id-ID');
+        }
+
+        // Meningkatkan jumlah item
+        function increaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += 1;
+                updateCartUI();
+            }
+        }
+
+        // Mengurangi jumlah item
+        function decreaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    cart = cart.filter(cartItem => cartItem.id !== productId);
+                }
+                updateCartUI();
+            }
+        }
+
+        // Membuka keranjang
+        function openCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        // Menutup keranjang
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('Keranjang belanja Anda kosong', 'error');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `Terima kasih atas pesanan Anda! Total pembayaran: Rp ${total.toLocaleString('id-ID')}. Kami akan mengirimkan detail pesanan ke email Anda.`;
+            
+            showNotification(message);
+            cart = [];
+            updateCartUI();
+            closeCart();
+        }
+
+        // Menampilkan notifikasi
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            
+            notificationMessage.textContent = message;
+            
+            if (type === 'error') {
+                notification.style.backgroundColor = '#f44336';
+            } else {
+                notification.style.backgroundColor = '#4CAF50';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Form kontak
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulasi pengiriman form
+            showNotification(`Terima kasih ${name}, pesan Anda telah terkirim!`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            updateCartUI();
+        });
+
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
